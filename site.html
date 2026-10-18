@@ -1,0 +1,905 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#b8e8dc">
+<title>Pra Mila 💚</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap');
+
+:root {
+  --mint: #b8e8dc;
+  --light: #edfaf5;
+  --pale: #f7fcf9;
+  --green: #398e7b;
+  --dark: #20594e;
+  --soft: #d8f1e8;
+  --text: #456c61;
+  --border: #d8eee5;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--pale);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
+
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(247,252,249,.96);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+  max-width: 1120px;
+  min-height: 72px;
+  margin: auto;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  color: var(--dark);
+  font-size: 26px;
+  white-space: nowrap;
+}
+
+.logo span { color: var(--green); }
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.nav-links button {
+  background: transparent;
+  border: 0;
+  padding: 10px 12px;
+  border-radius: 24px;
+  color: var(--text);
+  transition: .2s;
+}
+
+.nav-links button:hover,
+.nav-links button.active {
+  background: var(--soft);
+  color: var(--dark);
+}
+
+main {
+  width: min(1120px, 100%);
+  margin: auto;
+  padding: 28px 22px 60px;
+}
+
+.page { display: none; animation: fadeIn .3s ease; }
+.page.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero {
+  min-height: 530px;
+  padding: 48px 22px;
+  border: 1px solid #d5eee4;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 10% 15%, white 0, transparent 27%),
+    radial-gradient(circle at 88% 82%, #b4e8d7 0, transparent 35%),
+    linear-gradient(135deg, #e4f8ef, #f9fffb 50%, #c9eee2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero::before, .hero::after {
+  content: '♡';
+  position: absolute;
+  color: #6eb9a4;
+  opacity: .3;
+  font-size: clamp(45px, 8vw, 90px);
+  pointer-events: none;
+}
+
+.hero::before { left: 5%; top: 10%; transform: rotate(-18deg); }
+.hero::after { right: 5%; bottom: 9%; transform: rotate(15deg); }
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  color: var(--dark);
+  font-size: clamp(52px, 9vw, 94px);
+  line-height: 1.08;
+  margin-bottom: 20px;
+}
+
+.hero h1 em { color: var(--green); }
+
+.description {
+  max-width: 580px;
+  line-height: 1.9;
+  font-size: 17px;
+  color: #587e72;
+}
+
+.big-heart {
+  margin: 20px 0 8px;
+  font-size: 42px;
+  color: var(--green);
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.btn {
+  border: 0;
+  border-radius: 30px;
+  padding: 14px 22px;
+  transition: .2s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  min-height: 46px;
+}
+
+.btn-primary {
+  background: var(--green);
+  color: white;
+  box-shadow: 0 7px 18px #398e7b20;
+}
+
+.btn-primary:hover { background: var(--dark); transform: translateY(-2px); }
+
+.btn-secondary {
+  background: white;
+  color: var(--dark);
+  border: 1px solid #c9e7db;
+}
+
+.btn-secondary:hover { background: var(--light); }
+
+.hero .btn { margin-top: 27px; }
+
+.section-heading {
+  text-align: center;
+  margin: 24px 0 32px;
+}
+
+.section-heading h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--dark);
+  font-size: clamp(32px, 6vw, 49px);
+  margin-bottom: 12px;
+}
+
+.section-heading p { line-height: 1.8; color: #668d80; }
+
+.love-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.love-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 21px;
+  padding: 25px;
+  transition: .2s;
+}
+
+.love-card:hover { transform: translateY(-3px); }
+
+.love-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--dark);
+  margin: 12px 0;
+}
+
+.love-card p { line-height: 1.9; color: #5f7f74; }
+
+.quote {
+  margin-top: 25px;
+  padding: 30px 22px;
+  background: linear-gradient(135deg, #e2f6ed, #f5fcf8);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(21px, 4vw, 28px);
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--dark);
+}
+
+.center { text-align: center; margin-top: 25px; }
+
+.photos-tools {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 23px;
+}
+
+.upload-label { cursor: pointer; }
+#photoInput { display: none; }
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.photo-card {
+  min-width: 0;
+  padding: 10px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* FOTOS QUADRADAS */
+.photo-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+  background: var(--light);
+}
+
+.photo-card input {
+  width: 100%;
+  min-width: 0;
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 11px;
+  color: var(--text);
+  background: #fbfefc;
+}
+
+.remove-photo {
+  width: 100%;
+  margin-top: 9px;
+  padding: 10px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--light);
+  color: var(--dark);
+}
+
+.contract {
+  max-width: 780px;
+  margin: auto;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: clamp(20px, 5vw, 42px);
+  box-shadow: 0 12px 40px #20594e08;
+}
+
+.contract-top {
+  text-align: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.contract-top h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--dark);
+  font-size: clamp(29px, 5vw, 42px);
+  margin: 10px 0;
+}
+
+.contract-top p { line-height: 1.8; color: #668d80; }
+
+.contract-body { padding: 24px 0; line-height: 1.9; color: #5a7c70; }
+
+.contract-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  color: var(--dark);
+  margin: 19px 0 5px;
+}
+
+.field { margin: 18px 0; }
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.field input, .field textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #cfe8dd;
+  border-radius: 11px;
+  padding: 13px;
+  outline: none;
+  color: var(--text);
+  background: #fbfefc;
+}
+
+.field input:focus, .field textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px #b8e8dc55;
+}
+
+.field textarea { resize: vertical; min-height: 95px; }
+
+.check-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 18px 0;
+}
+
+.check-row input { margin-top: 6px; accent-color: var(--green); }
+
+.contract-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+#contractResult {
+  display: none;
+  margin-top: 24px;
+  padding: 23px;
+  background: var(--light);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  text-align: center;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+#contractResult h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+#signatures {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  margin-top: 15px;
+  color: var(--dark);
+}
+
+#toast {
+  display: none;
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  width: max-content;
+  max-width: 90%;
+  padding: 13px 18px;
+  border-radius: 25px;
+  color: white;
+  background: var(--dark);
+  box-shadow: 0 5px 25px #0002;
+  text-align: center;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 25px 15px;
+  text-align: center;
+  color: #719489;
+  line-height: 1.9;
+  font-size: 13px;
+}
+
+/* AJUSTES PARA CELULAR */
+@media (max-width: 700px) {
+  .navbar {
+    display: block;
+    padding: 12px 10px 10px;
+  }
+
+  .logo {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 25px;
+  }
+
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+    width: 100%;
+  }
+
+  .nav-links button {
+    padding: 10px 3px;
+    min-width: 0;
+    font-size: 11px;
+    line-height: 1.3;
+    border-radius: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  main { padding: 15px 12px 35px; }
+
+  .hero {
+    min-height: 490px;
+    padding: 40px 18px;
+    border-radius: 23px;
+  }
+
+  .hero::before { left: 3%; top: 5%; }
+  .hero::after { right: 3%; bottom: 5%; }
+
+  .description { font-size: 15px; }
+
+  .section-heading { margin: 20px 0 25px; }
+  .love-grid { grid-template-columns: 1fr; gap: 12px; }
+  .love-card { padding: 21px; }
+
+  .photos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .photo-card { padding: 7px; border-radius: 13px; }
+
+  /* Mantém as fotos quadradas no celular */
+  .photo-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .photo-card input { padding: 9px 7px; font-size: 13px; }
+
+  .contract {
+    padding: 19px 15px;
+    border-radius: 18px;
+  }
+
+  .contract-actions { flex-direction: column; }
+  .contract-actions .btn { width: 100%; }
+  .field input, .field textarea { font-size: 16px; }
+}
+
+@media (max-width: 360px) {
+  .nav-links button { font-size: 10px; }
+  .photos-grid { grid-template-columns: 1fr; }
+}
+
+@media print {
+  header, footer, .section-heading, .contract-actions, #toast {
+    display: none !important;
+  }
+
+  body { background: white; }
+  main { padding: 0; }
+  .page { display: none !important; }
+  #contrato.page { display: block !important; }
+  .contract { box-shadow: none; border: none; padding: 0; }
+  #contractResult { display: block !important; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar">
+    <div class="logo">Mila <span>♡</span></div>
+    <div class="nav-links">
+      <button class="active" data-page="inicio">Início</button>
+      <button data-page="amor">Pq eu te amo</button>
+      <button data-page="fotos">Fotos</button>
+      <button data-page="contrato">Contrato</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section class="page active" id="inicio">
+  <div class="hero">
+    <div class="eyebrow">Com mto carinho pra vc</div>
+    <h1>Site da<br><em>Mila</em></h1>
+    <div class="big-heart">♡</div>
+    <p class="description">
+      Oie eai. Eu gosto mto de vc eu acho vc legal tals.
+      Desculpa por tudo de errado q eu já fiz. Eu
+      prometo q se vc me der mais uma chance eu vou
+      te tratar como vc merece
+    </p>
+    <button class="btn btn-primary" onclick="showPage('amor')">
+      Pq eu te amo 💚
+    </button>
+  </div>
+</section>
+
+<section class="page" id="amor">
+  <div class="section-heading">
+    <div class="eyebrow">Pq eu te amo</div>
+    <h2>Tem mtos motivos ne</h2>
+  </div>
+
+  <div class="love-grid">
+    <article class="love-card">
+      <h3>Seu biquinho</h3>
+      <p>Eu gosto mto quando vc faz biquinho pra conseguir as coisas ou pra mostrar q ta triste é fofo</p>
+    </article>
+    <article class="love-card">
+      <h3>Seu cheiro</h3>
+      <p>Vc é muito cheirosa tem vários perfumes é muito legal</p>
+    </article>
+    <article class="love-card">
+      <h3>Charlie</h3>
+      <p>O Charlie é muito fofo eu gosto mto dele e ele é seu gato ne</p>
+    </article>
+    <article class="love-card">
+      <h3>Seu esforço</h3>
+      <p>Vc msm quando ta cansada continua fazendo as coisas pra ter um futuro melhor tipo estudar academia tals</p>
+    </article>
+    <article class="love-card">
+      <h3>Seu carinho</h3>
+      <p>Gostava mto do quao carinhosa vc era cmg vc era meu conforto mesmo quando todo o resto tava ruim</p>
+    </article>
+    <article class="love-card">
+      <h3>Tudinho</h3>
+      <p>Acho q nao tem nada q eu nao goste em vc, vc é tipo perfeita serio</p>
+    </article>
+  </div>
+
+  <div class="center">
+    <button class="btn btn-primary" onclick="showPage('fotos')">
+      Fotos fofas 📸
+    </button>
+  </div>
+</section>
+
+<section class="page" id="fotos">
+  <div class="section-heading">
+    <div class="eyebrow">Pra vc adicionar tbm</div>
+    <h2>Fotos fofas 📸</h2>
+    <p>Pra lembrar de vc e da gnt se quiser tbm</p>
+  </div>
+
+  <div class="photos-tools">
+    <label class="btn btn-primary upload-label" for="photoInput">
+      + Adicionar fotos
+    </label>
+    <input id="photoInput" type="file" accept="image/*" multiple>
+  </div>
+
+  <div class="photos-grid" id="photosGrid"></div>
+</section>
+
+<section class="page" id="contrato">
+  <div class="section-heading">
+    <div class="eyebrow">Assina ein</div>
+    <h2>Contrato</h2>
+    <p>Super oficial e importante ta</p>
+  </div>
+
+  <div class="contract">
+    <div class="contract-top">
+      <h2>Contrato 💚</h2>
+      <p>Se assinar ta assinado</p>
+    </div>
+
+    <div class="contract-body">
+      <h3>Cláusula 1 — Muito carinho</h3>
+      <p>Prometo te dar toda atenção do mundo e mto carinho</p>
+
+      <h3>Cláusula 2 — Respeito</h3>
+      <p>Prometo respeitar vc e tudo q vem junto</p>
+
+      <h3>Cláusula 3 — Sem ciúmes</h3>
+      <p>Prometo n ter aqueles ciúmes bobos q eu tinha antes</p>
+
+      <h3>Cláusula 4 — Presentes</h3>
+      <p>Prometo te dar mtos presentes legais q nem antes</p>
+
+      <h3>Cláusula 5 — Comida</h3>
+      <p>Prometo te dar todas as comidas q vc gosta até chocolate de Dubai e miojo</p>
+
+      <h3>Cláusula 6 — Obediência</h3>
+      <p>Vc manda e eu obedeço</p>
+    </div>
+
+    <!-- ÚNICA PESSOA QUE PRECISA ASSINAR: MILA -->
+    <div class="field">
+      <label for="assinaturaMila">Assinatura (seu nome)</label>
+      <input
+        id="assinaturaMila"
+        type="text"
+        placeholder="Assina aq"
+        autocomplete="name"
+      >
+    </div>
+
+    <div class="field">
+      <label for="promessa">Exigências extras</label>
+      <textarea id="promessa" placeholder="Escreve oq mais vc quer aq"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="dataContrato">Data</label>
+      <input id="dataContrato" type="date">
+    </div>
+
+    <label class="check-row">
+      <input id="aceite" type="checkbox">
+      <span>Li e aceito os termos super serios</span>
+    </label>
+
+    <div class="contract-actions">
+      <button class="btn btn-primary" id="signButton" type="button">
+        Assinar 💚
+      </button>
+      <button class="btn btn-secondary" id="printButton" type="button">
+        Imprimir / Salvar em PDF
+      </button>
+    </div>
+
+    <div id="contractResult" aria-live="polite">
+      <h3>Ebaaaaaaaaaaa 💚</h3>
+      <p id="resultText"></p>
+      <p id="signatures"></p>
+      <p style="font-size:12px;margin-top:12px">
+        Agr é oficial ein
+      </p>
+      <button class="btn btn-secondary" id="resultPrintButton" type="button" style="margin-top:15px">
+        Salvar em PDF
+      </button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Feito com carinho pra vc Mila ♡<br>
+  Te amo mto espero q vc goste
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* NAVEGAÇÃO */
+const pages = document.querySelectorAll('.page');
+const navButtons = document.querySelectorAll('.nav-links button');
+
+function showPage(id) {
+  pages.forEach(page => {
+    page.classList.toggle('active', page.id === id);
+  });
+
+  navButtons.forEach(button => {
+    button.classList.toggle('active', button.dataset.page === id);
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+navButtons.forEach(button => {
+  button.addEventListener('click', () => showPage(button.dataset.page));
+});
+
+/* AVISOS */
+let toastTimer;
+
+function notify(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.style.display = 'block';
+
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.style.display = 'none';
+  }, 3200);
+}
+
+/* ÁLBUM DE FOTOS */
+const photosGrid = document.getElementById('photosGrid');
+const photoInput = document.getElementById('photoInput');
+
+function createPhotoCard(src, captionText = '') {
+  const card = document.createElement('article');
+  card.className = 'photo-card';
+
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = 'Foto pro álbum';
+  img.loading = 'lazy';
+
+  img.addEventListener('error', () => {
+    img.alt = 'Deu erro';
+  });
+
+  const caption = document.createElement('input');
+  caption.type = 'text';
+  caption.placeholder = 'Coloca uma legenda';
+  caption.value = captionText;
+  caption.setAttribute('aria-label', 'Legenda da foto');
+
+  const remove = document.createElement('button');
+  remove.className = 'remove-photo';
+  remove.type = 'button';
+  remove.textContent = 'Remover foto';
+  remove.addEventListener('click', () => card.remove());
+
+  card.append(img, caption, remove);
+  photosGrid.appendChild(card);
+}
+
+/* Três fotos iniciais ilustrativas */
+const initialPhotos = [
+  {
+    url: 'd1b835be-2011-4cbe-ad62-d8e207a17bde.jpeg',
+    caption: 'Vc no interanglo'
+  },
+  {
+    url: 'a4125ae8-0ee8-4398-a5c2-b57ef5d29d3e.jpeg',
+    caption: 'Deitada na cama'
+  },
+  {
+    url: 'f57a16a9-512f-43f8-95e0-db25a517d9af.jpeg',
+    caption: 'Fazendo skincare'
+  }
+];
+
+/* Embaralha a ordem das fotos a cada abertura */
+initialPhotos
+  .map(photo => ({ photo, sort: Math.random() }))
+  .sort((a, b) => a.sort - b.sort)
+  .forEach(item => createPhotoCard(item.photo.url, item.photo.caption));
+
+photoInput.addEventListener('change', event => {
+  const files = Array.from(event.target.files || []);
+
+  files.forEach(file => {
+    if (!file.type.startsWith('image/')) return;
+
+    const reader = new FileReader();
+
+    reader.onload = e => createPhotoCard(e.target.result, '');
+    reader.readAsDataURL(file);
+  });
+
+  photoInput.value = '';
+});
+
+/* DATA INICIAL */
+const dateInput = document.getElementById('dataContrato');
+
+function todayLocal() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+dateInput.value = todayLocal();
+
+/* ASSINATURA: SOMENTE MILA PRECISA ASSINAR */
+document.getElementById('signButton').addEventListener('click', () => {
+  const assinatura = document.getElementById('assinaturaMila').value.trim();
+  const promessa = document.getElementById('promessa').value.trim();
+  const data = dateInput.value;
+  const aceitou = document.getElementById('aceite').checked;
+
+  if (!assinatura || !data) {
+    notify('Falta nome e data');
+    return;
+  }
+
+  if (!aceitou) {
+    notify('Marca a caixa dos termos');
+    return;
+  }
+
+  const parsedDate = new Date(data + 'T12:00:00');
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    notify('Escolha uma data certa');
+    return;
+  }
+
+  const dataFormatada = parsedDate.toLocaleDateString('pt-BR');
+
+  const resultText = document.getElementById('resultText');
+  const signatures = document.getElementById('signatures');
+  const result = document.getElementById('contractResult');
+
+  resultText.textContent =
+    `Mila e Ângelo agora tao juntos desde ${dataFormatada}.` +
+    (promessa ? ` Exigências extras: ${promessa}` : '');
+
+  /* Mostra o nome digitado pela Mila e o nome fixo Ângelo */
+  signatures.textContent = `${assinatura} ♡ Ângelo`;
+
+  result.style.display = 'block';
+
+  result.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+
+  notify('EBAAAAAAAAAAAAAAAAAAAAAA 💚');
+});
+
+/* IMPRESSÃO E PDF */
+function printContract() {
+  const result = document.getElementById('contractResult');
+
+  if (result.style.display !== 'block') {
+    notify('Faz tudo antes de imprimir.');
+    return;
+  }
+
+  window.print();
+}
+
+document.getElementById('printButton').addEventListener('click', printContract);
+document.getElementById('resultPrintButton').addEventListener('click', printContract);
+</script>
+
+</body>
+</html>
